@@ -6,7 +6,10 @@ import "./assets/img/bg-bt.svg";
 
 const valuteIconsArr = document.querySelectorAll(".card-item-terms-price__valute-logo"),
     sumArr = document.querySelectorAll(".card-item-terms-price__sum"),
-    periodArr = document.querySelectorAll(".card-item-terms-price__period");
+    periodArr = document.querySelectorAll(".card-item-terms-price__period"),
+    overlay = document.querySelector(".overlay"),
+    openBurgerBtn = document.querySelector(".open-burger-btn"),
+    burgerMenu = document.querySelector(".burger-menu");
 let currentPeriod = "month",
     currentValute = "usd";
 
@@ -14,22 +17,19 @@ window.onload = () => {
     setTimeout(() => sumArr.forEach(item => { item.style.filter = "blur(0)" }), 300)
 }
 
-document.querySelector(".open-burger-btn").addEventListener("click", () => {
-    document.querySelector(".open-burger-btn").classList.toggle("close-burger-btn");
-    document.querySelector(".burger-menu").classList.toggle("burger-menu--visible");
-    document.querySelector(".overlay").classList.toggle("d-block");
-    setTimeout(() => document.querySelector(".overlay").classList.toggle("overlay--visible"), 0);
-    document.body.classList.toggle("overflow-hidden");
+openBurgerBtn.addEventListener("click", () => {
+    openBurgerBtn.classList.toggle("close-burger-btn");
+    burgerMenu.classList.toggle("burger-menu--visible");
+    overlay.classList.toggle("d-block");
+    setTimeout(() => overlay.classList.toggle("overlay--visible"), 0);
 })
 
-document.querySelector(".overlay").addEventListener("click", () => {
-    document.querySelector(".open-burger-btn").classList.toggle("close-burger-btn");
-    document.querySelector(".burger-menu").classList.toggle("burger-menu--visible");
-    document.querySelector(".overlay").classList.toggle("d-block");
-    setTimeout(() => document.querySelector(".overlay").classList.toggle("overlay--visible"), 0);
+overlay.addEventListener("click", () => {
+    openBurgerBtn.classList.toggle("close-burger-btn");
+    burgerMenu.classList.toggle("burger-menu--visible");
+    overlay.classList.toggle("d-block");
+    setTimeout(() => overlay.classList.toggle("overlay--visible"), 0);
 });
-
-document.querySelector(".overlay").onscroll = (e) => e.preventDefault();
 
 periodArr.forEach(periodItem => {
     periodItem.addEventListener("click", () => {
